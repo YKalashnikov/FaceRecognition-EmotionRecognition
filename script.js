@@ -2,13 +2,6 @@
 const video = document.getElementById('video')
 //Connecting the front camera
 
-const startVideo = () => {
-    navigator.getUserMedia(
-        { video: {} },
-        stream => video.srcObject = stream,
-        err => console.log('err',err)
-    )
-}
 
 Promise.all([
     faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
@@ -19,6 +12,13 @@ Promise.all([
 
 ]).then(startVideo)
 
+function startVideo (){
+    navigator.getUserMedia(
+        { video: {} },
+        stream => video.srcObject = stream,
+        err => console.log('err',err)
+    )
+}
 
 
 video.addEventListener('play', ()=>{
